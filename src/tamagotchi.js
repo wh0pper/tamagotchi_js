@@ -3,7 +3,8 @@ export let tamagotchi = {
   funLevel: 10,
   hygieneLevel: 10,
   age: 0,
-
+  isSick: false,
+  isDead: false,
   setHunger: function() {
     const hungerInterval = setInterval(() => {
       this.foodLevel--;
@@ -13,109 +14,43 @@ export let tamagotchi = {
       }
     }, 60000);
   },
-
   feed: function() {
     while (this.foodLevel < 10) {
       this.foodLevel++;
     }
+  },
+  setFun: function() {
+    const funInterval = setInterval(() => {
+      this.funLevel--;
+      if (this.funLevel === 0) {
+        return "Your pet is bored. Play with them before they are driven off the brink of sanity.";
+      }
+    }, 30000);
+  },
+  play: function() {
+    while (this.funLevel < 10) {
+      this.funLevel++;
+    }
+  },
+  setHygiene: function() {
+    const hygieneInterval = setInterval(() => {
+      this.hygieneLevel--;
+      if (this.hygieneLevel == 0) {
+        return "Your pet is filthy. Give them a bath before they get sick.";
+      }
+    }, 45000);
+  },
+  bathe: function() {
+    this.hygieneLevel = 10;
+  },
+  setAge: function() {
+    const ageInterval = setInterval(() => {
+      this.age++;
+      if (this.age == 25) {
+        this.isDead = true;
+        return "Your pet has died of old age. They lived a full and beautiful life."
+      }
+    }, 60000);
   }
 
 }
-
-//
-setHunger: function() {
-    const hungerInterval = setInterval(() => {
-      this.foodLevel--;
-      if (this.didYouGetEaten() == true) {
-        clearInterval(hungerInterval);
-        return "You got eaten!";
-      }
-    }, 1000);
-  },
-  didYouGetEaten: function() {
-    if (this.foodLevel > 0) {
-      return false;
-    } else {
-      return true;
-    }
-  },
-  feed: function(amount) {
-    let that = this;
-    return function(food) {
-      that.foodLevel += amount
-      return `The bear ate the ${food}! Food level goes up ${amount}!`
-    }
-  }
-
-// export class Age {
-//   constructor(dob) {
-//     this.dob = new Date(dob); //dob expected in yyyy-mm-dd from html form, note this returns
-//   }
-//
-//   ageYears() {
-//     let now = new Date(Date.now());
-//     return (now.getFullYear() - this.dob.getFullYear());
-//   }
-//
-//   ageToSec() {
-//     return (Date.now() - Date.parse(this.dob))/1000;
-//   }
-//
-//   dateDifference(date1, date2) {
-//     date1 = new Date(date1);
-//     date2 = new Date(date2);
-//     return (date2 - date1)/1000; //returns difference in seconds
-//   }
-//
-//   agePlanet(planet) {
-//     let conversion = 1;
-//     if (planet === 'mercury') {
-//       conversion = this.MERCYEARS;
-//     } else if (planet === 'venus') {
-//       conversion = this.VENUSYEARS;
-//     } else if (planet === 'mars') {
-//       conversion = this.MARSYEARS;
-//     } else if (planet === 'jupiter') {
-//       conversion = this.JUPITERYEARS;
-//     }
-//     let converted = (this.ageToSec()/this.SECONDSINYEAR)/conversion;
-//     return converted.toFixed(3);
-//   }
-//
-//   lifeExpectancy(sex, country, planet) {
-//     let average = 70;
-//     country = country.toLowerCase();
-//     if (country === 'japan' || country === 'switzerland' || country === 'singapore' || country === 'australia' || country === 'spain') {
-//       average += 5;
-//     } else if (country === 'sierra leone' || country === 'angola' || country === 'nigeria' || country === 'somalia' || country === 'cameroon') {
-//       average -= 20;
-//     }
-//
-//     if (sex === 'female') {
-//       average += 5;
-//     }
-//
-//     if (this.ageToSec() > 0) {
-//       average += 5;
-//     } else {
-//       average -= 5;
-//     }
-//
-//     if (planet === 'mercury') {
-//       average = average/this.MERCYEARS;
-//     } else if (planet === 'venus') {
-//       average = average/this.VENUSYEARS;
-//     } else if (planet === 'mars') {
-//       average = average/this.MARSYEARS;
-//     } else if (planet === 'jupiter') {
-//       average = average/this.JUPITERYEARS;
-//     }
-//     return average;
-//   }
-//
-//   lifeRemaining(expectancy) {
-//     return Math.round(expectancy - this.ageToSec()/this.SECONDSINYEAR);
-//   }
-//
-//
-// }

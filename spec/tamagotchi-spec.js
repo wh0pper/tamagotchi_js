@@ -3,83 +3,54 @@ import {tamagotchi} from './../src/tamagotchi';
 describe('tamagotchi', function() {
 
   beforeEach(function() {
+    jasmine.clock().install();
+  });
+
+  afterEach(function() {
+    jasmine.clock().uninstall();
   });
 
   it('has property containing foodLevel of 0-10', function() {
     expect(tamagotchi.foodLevel).toEqual(10);
   });
-//
-//   it('has method .ageYears that returns current age in years as decimal', function() {
-//     expect(Math.floor(testAge.ageYears())).toEqual(28);
-//   });
-//
-//   it('has method .ageToSec that returns current age in seconds', function() {
-//     expect(Math.floor(testAge.ageToSec()/secondsInYear)).toEqual(nowObj.getFullYear() - testAge.dob.getFullYear()); //note this test will only pass for the next year
-//   });
-//
-//   it('has method .dateDifference that returns difference between two dates in seconds', function() {
-//     let date1 = '2017/3/13';
-//     let date2 = '03-13-2018';
-//     expect(testAge.dateDifference(date1,date2)).toEqual(secondsInYear);
-//   });
-//
-//   it('has method .agePlanet that returns age on a given planet (mercury)', function() {
-//     let planet = "mercury";
-//     let earthYears = testAge.ageToSec()/secondsInYear; //exact decimal value
-//     let mercuryYears = (earthYears/.24).toFixed(3);
-//     expect(testAge.agePlanet(planet)).toEqual(mercuryYears);
-//   });
-//
-//   it('has method .agePlanet that returns age on a given planet (venus)', function() {
-//     let planet = "venus";
-//     let earthYears = testAge.ageToSec()/secondsInYear; //exact decimal value
-//     let venusYears = (earthYears/.62).toFixed(3);
-//     expect(testAge.agePlanet(planet)).toEqual(venusYears);
-//   });
-//
-//   it('has method .agePlanet that returns age on a given planet (mars)', function() {
-//     let planet = "mars";
-//     let earthYears = testAge.ageToSec()/secondsInYear; //exact decimal value
-//     let marsYears = (earthYears/1.88).toFixed(3);
-//     expect(testAge.agePlanet(planet)).toEqual(marsYears);
-//   });
-//
-//   it('has method .agePlanet that returns age on a given planet (jupiter)', function() {
-//     let planet = "jupiter";
-//     let earthYears = testAge.ageToSec()/secondsInYear; //exact decimal value
-//     let jupiterYears = (earthYears/11.86).toFixed(3);
-//     expect(testAge.agePlanet(planet)).toEqual(jupiterYears);
-//   });
-//
-//   it('has method .lifeExpectancy() that uses simple logic rules to calc a life expectancy in years for a given planet (earth)', function() {
-//     let sex = 'female';
-//     let country = 'United States';
-//     let planet = 'earth';
-//     expect(testAge.lifeExpectancy(sex, country, planet)).toEqual(80);
-//   });
-//
-//   it('has method .lifeExpectancy() that uses simple logic rules to calc a life expectancy in years for a given planet (jupiter)', function() {
-//     let sex = 'female';
-//     let country = 'United States';
-//     let planet = 'jupiter';
-//     expect(Math.round(testAge.lifeExpectancy(sex, country, planet))).toEqual(7);
-//   });
-//
-//   it('has method .lifeRemaining() that determines how many years a user has left', function() {
-//     let sex = 'female';
-//     let country = 'United States';
-//     let planet = 'earth';
-//     let expectancy = testAge.lifeExpectancy(sex, country, planet)
-//     expect(testAge.lifeRemaining(expectancy)).toEqual(52);
-//   });
-//
-//   it('if user older than life expectancy .lifeRemaining() returns how far past expectancy they are as negative number', function() {
-//     let sex = 'female';
-//     let country = 'United States';
-//     let planet = 'earth';
-//     let newAge = new Age('1920-01-01');
-//     let expectancy = testAge.lifeExpectancy(sex, country, planet)
-//     expect(newAge.lifeRemaining(expectancy)).toEqual(-18);
-//   });
-//
+
+  it('foodLevel decreases by 1 every 60 seconds', function() {
+    tamagotchi.setHunger();
+    jasmine.clock().tick(60001);
+    expect(tamagotchi.foodLevel).toEqual(9);
+  });
+
+  it('feeding increases foodLevel by 1 until full', function() {
+    tamagotchi.setHunger();
+    jasmine.clock().tick(60001);
+    tamagotchi.feed();
+    expect(tamagotchi.foodLevel).toEqual(10);
+    tamagotchi.feed();
+    expect(tamagotchi.foodLevel).toEqual(10);
+  });
+
+  it('funLevel decreases by 1 every 30 seconds, playing increases by 1', function() {
+    tamagotchi.setFun();
+    jasmine.clock().tick(30001);
+    expect(tamagotchi.funLevel).toEqual(9);
+    tamagotchi.play();
+    expect(tamagotchi.funLevel).toEqual(10);
+  });
+
+  it('hygieneLevel decreases by 1 every 45 seconds, bathing sets back at 10', function() {
+    tamagotchi.setHygiene();
+    jasmine.clock().tick(135001);
+    expect(tamagotchi.hygieneLevel).toEqual(7);
+    tamagotchi.bathe();
+    expect(tamagotchi.hygieneLevel).toEqual(10);
+  });
+
+  it('ages by 1 every 60s and dies at 25', function() {
+    tamagotchi.setAge();
+    jasmine.clock().tick(1440001);
+    expect(tamagotchi.age).toEqual(24);
+    jasmine.clock().tick(1500001);
+    expect(tamagotchi.isDead).toEqual(true);
+  });
+
 });
