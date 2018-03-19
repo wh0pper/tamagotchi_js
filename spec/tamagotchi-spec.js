@@ -1,20 +1,13 @@
-// import {Age} from './../src/age';
+import {tamagotchi} from './../src/tamagotchi';
 //
-// describe('Age', function() {
-//   const secondsInYear = 31536000;
-//   var testAge;
-//   var nowObj;
-//
-//   beforeEach(function() {
-//     var testDOB = '1990-03-13 PST';
-//     testAge = new Age(testDOB);
-//     nowObj = new Date(Date.now());
-//   });
-//
-//   it('has property containing DOB as a Date object', function() {
-//     expect(testAge.dob instanceof Date).toEqual(true);
-//     expect(testAge.dob.toDateString()).toEqual('Tue Mar 13 1990');
-//   });
+describe('tamagotchi', function() {
+
+  beforeEach(function() {
+  });
+
+  it('has property containing foodLevel of 0-10', function() {
+    expect(tamagotchi.foodLevel).toEqual(10);
+  });
 //
 //   it('has method .ageYears that returns current age in years as decimal', function() {
 //     expect(Math.floor(testAge.ageYears())).toEqual(28);
@@ -89,4 +82,4 @@
 //     expect(newAge.lifeRemaining(expectancy)).toEqual(-18);
 //   });
 //
-// });
+});

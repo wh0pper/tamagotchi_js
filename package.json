@@ -1,7 +1,7 @@
 {
-  "name": "galactic_age",
+  "name": "tamagotchi",
   "version": "1.0.0",
-  "description": "Space age converter",
+  "description": "web game inspired by Tamagotchi",
   "main": "index.js",
   "scripts": {
     "test": "karma start karma.conf.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wh0pper/space_age.git"
+    "url": ""
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": ""
   },
-  "homepage": "https://github.com/wh0pper/space_age#readme",
+  "homepage": "",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
