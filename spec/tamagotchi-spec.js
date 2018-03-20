@@ -1,5 +1,5 @@
 import {tamagotchi} from './../src/tamagotchi';
-//
+
 describe('tamagotchi', function() {
 
   beforeEach(function() {

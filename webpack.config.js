@@ -47,6 +47,17 @@ module.exports = {
         options: {
           presets: ['es2015']
         }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 25000
+            }
+          }
+        ]
       }
     ]
   }
