@@ -1,4 +1,6 @@
 export let tamagotchi = {
+  name: '',
+  characteristics: {},
   foodLevel: 10,
   funLevel: 10,
   hygieneLevel: 10,
