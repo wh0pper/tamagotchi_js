@@ -3,11 +3,13 @@
 import $ from 'jquery';
 import {tamagotchi} from './tamagotchi';
 
-$(document).ready(function() {
-  $("#food").text(`Food level: ${tamagotchi.foodLevel}/10`);
-  $("#fun").text(`Fun level: ${tamagotchi.funLevel}/10`);
-  $("#hygiene").text(`Cleanliness: ${tamagotchi.hygieneLevel}/10`);
-})
+// $(document).ready(function() {
+//
+// })
+
+$("button#feed").click(function() {
+  tamagotchi.feed();  
+});
 
 tamagotchi.setHunger();
 tamagotchi.setFun();
@@ -17,6 +19,10 @@ tamagotchi.setAge();
 var game = setInterval(playing, 1000);
 
 function playing() {
+  $("#food").text(`Food level: ${tamagotchi.foodLevel}/10`);
+  $("#fun").text(`Fun level: ${tamagotchi.funLevel}/10`);
+  $("#hygiene").text(`Cleanliness: ${tamagotchi.hygieneLevel}/10`);
+
   console.log(tamagotchi.age);
   if (tamagotchi.age >= 0 && tamagotchi.age < 2) {
     document.getElementById("output").innerHTML = "<img src='img/egg.png'>";
