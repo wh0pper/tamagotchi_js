@@ -10,7 +10,7 @@ export let tamagotchi = {
   isDead: false,
   setHunger: function() {
     const hungerInterval = setInterval(() => {
-      while (this.foodLevel >= 0) {
+      if (this.foodLevel >= 0) {
         this.foodLevel--;
       }
       if (this.foodLevel == 0) {
@@ -20,13 +20,13 @@ export let tamagotchi = {
     }, 60000);
   },
   feed: function() {
-    while (this.foodLevel < 10) {
+    if (this.foodLevel < 10) {
       this.foodLevel++;
     }
   },
   setFun: function() {
     const funInterval = setInterval(() => {
-      while (this.funLevel >= 0) {
+      if (this.funLevel >= 0) {
         this.funLevel--;
       }
       if (this.funLevel === 0) {
@@ -35,13 +35,13 @@ export let tamagotchi = {
     }, 30000);
   },
   play: function() {
-    while (this.funLevel < 10) {
+    if (this.funLevel < 10) {
       this.funLevel++;
     }
   },
   setHygiene: function() {
     const hygieneInterval = setInterval(() => {
-      while (this.hygieneLevel >= 0) {
+      if (this.hygieneLevel >= 0) {
         this.hygieneLevel--;
       }
       if (this.hygieneLevel == 0) {
@@ -54,7 +54,7 @@ export let tamagotchi = {
   },
   setSleep: function() {
     const sleepInterval = setInterval(() => {
-      while (this.sleepLevel >= 0) {
+      if (this.sleepLevel >= 0) {
         this.sleepLevel--;
       }
       if (this.sleepLevel == 0) {

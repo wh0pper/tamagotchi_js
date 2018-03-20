@@ -13,6 +13,7 @@ export class Interface {
   // }
 
   static play() {
+    $("h2#head").text(`${tamagotchi.name}`)
     $(".creation").hide();
     $(".playing").show();
 
@@ -24,8 +25,16 @@ export class Interface {
     $("button#feed").click(function() {
       tamagotchi.feed();
     });
+    $("button#play").click(function() {
+      tamagotchi.play();
+    });
+    $("button#bathe").click(function() {
+      tamagotchi.bathe();
+    });
+    $("button#sleep").click(function() {
+      tamagotchi.sleep();
+    });
 
-    $("h2#head").text(`${tamagotchi.name}`)
 
     var game = setInterval(render, 1000);
 
