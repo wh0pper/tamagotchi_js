@@ -53,4 +53,12 @@ describe('tamagotchi', function() {
     expect(tamagotchi.isDead).toEqual(true);
   });
 
+  it('levels cant go below 0', function() {
+    tamagotchi.setHunger();
+    jasmine.clock().tick(600001);
+    expect(tamagotchi.foodLevel).toEqual(0);
+    jasmine.clock().tick(1500001);
+    expect(tamagotchi.foodLevel).toEqual(0);
+  });
+
 });

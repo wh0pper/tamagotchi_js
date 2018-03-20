@@ -4,12 +4,15 @@ export let tamagotchi = {
   foodLevel: 10,
   funLevel: 10,
   hygieneLevel: 10,
+  sleepLevel: 10,
   age: 0,
   isSick: false,
   isDead: false,
   setHunger: function() {
     const hungerInterval = setInterval(() => {
-      this.foodLevel--;
+      while (this.foodLevel >= 0) {
+        this.foodLevel--;
+      }
       if (this.foodLevel == 0) {
         clearInterval(hungerInterval);
         return "Your pet starved to death.";
@@ -23,7 +26,9 @@ export let tamagotchi = {
   },
   setFun: function() {
     const funInterval = setInterval(() => {
-      this.funLevel--;
+      while (this.funLevel >= 0) {
+        this.funLevel--;
+      }
       if (this.funLevel === 0) {
         return "Your pet is bored. Play with them before they are driven off the brink of sanity.";
       }
@@ -36,7 +41,9 @@ export let tamagotchi = {
   },
   setHygiene: function() {
     const hygieneInterval = setInterval(() => {
-      this.hygieneLevel--;
+      while (this.hygieneLevel >= 0) {
+        this.hygieneLevel--;
+      }
       if (this.hygieneLevel == 0) {
         return "Your pet is filthy. Give them a bath before they get sick.";
       }
@@ -44,6 +51,19 @@ export let tamagotchi = {
   },
   bathe: function() {
     this.hygieneLevel = 10;
+  },
+  setSleep: function() {
+    const sleepInterval = setInterval(() => {
+      while (this.sleepLevel >= 0) {
+        this.sleepLevel--;
+      }
+      if (this.sleepLevel == 0) {
+        return "Your pet died of sleep deprivation.";
+      }
+    }, 60000);
+  },
+  sleep: function() {
+    this.sleepLevel = 10;
   },
   setAge: function() {
     const ageInterval = setInterval(() => {

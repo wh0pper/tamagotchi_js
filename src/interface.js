@@ -25,14 +25,15 @@ export class Interface {
       tamagotchi.feed();
     });
 
+    $("h2#head").text(`${tamagotchi.name}`)
 
-    var game = setInterval(playing, 1000);
+    var game = setInterval(render, 1000);
 
-    function playing() {
+    function render() {
       $("#food").text(`Food level: ${tamagotchi.foodLevel}/10`);
       $("#fun").text(`Fun level: ${tamagotchi.funLevel}/10`);
       $("#hygiene").text(`Cleanliness: ${tamagotchi.hygieneLevel}/10`);
-
+      $("#sleep").text(`Energy: ${tamagotchi.hygieneLevel}/10`);
       //age
       if (tamagotchi.age >= 0 && tamagotchi.age < 2) {
         document.getElementById("output").innerHTML = 'egg'; //"<img src='img/egg.png'>";
