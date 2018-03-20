@@ -11,8 +11,11 @@ $(document).ready(function() {
     let name = $('input#name').val();
     tamagotchi.name = name;
     Interface.play();
+
   });
 });
+
+// $('.playing').append(``)
 
 // let promise = new Promise(function(resolve, reject) {
 //

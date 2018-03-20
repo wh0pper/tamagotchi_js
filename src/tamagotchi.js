@@ -10,10 +10,9 @@ export let tamagotchi = {
   isDead: false,
   setHunger: function() {
     const hungerInterval = setInterval(() => {
-      if (this.foodLevel >= 0) {
+      if (this.foodLevel > 0) {
         this.foodLevel--;
-      }
-      if (this.foodLevel == 0) {
+      } else if (this.foodLevel == 0) {
         clearInterval(hungerInterval);
         return "Your pet starved to death.";
       }
@@ -26,7 +25,7 @@ export let tamagotchi = {
   },
   setFun: function() {
     const funInterval = setInterval(() => {
-      if (this.funLevel >= 0) {
+      if (this.funLevel > 0) {
         this.funLevel--;
       }
       if (this.funLevel === 0) {
@@ -41,7 +40,7 @@ export let tamagotchi = {
   },
   setHygiene: function() {
     const hygieneInterval = setInterval(() => {
-      if (this.hygieneLevel >= 0) {
+      if (this.hygieneLevel > 0) {
         this.hygieneLevel--;
       }
       if (this.hygieneLevel == 0) {
@@ -54,7 +53,7 @@ export let tamagotchi = {
   },
   setSleep: function() {
     const sleepInterval = setInterval(() => {
-      if (this.sleepLevel >= 0) {
+      if (this.sleepLevel > 0) {
         this.sleepLevel--;
       }
       if (this.sleepLevel == 0) {

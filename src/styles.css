@@ -1,3 +1,19 @@
+.container {
+  margin: 0 auto;
+}
+
 .playing {
   display: none;
+}
+
+.bit-button {
+  width: 75px;
+  height: 75px;
+  background: black;
+  border-radius: 50%;
+  color: white;
+}
+
+.bit-button .hover {
+  border-radius: 0%;
 }

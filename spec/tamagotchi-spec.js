@@ -14,17 +14,10 @@ describe('tamagotchi', function() {
     expect(tamagotchi.foodLevel).toEqual(10);
   });
 
-  it('foodLevel decreases by 1 every 60 seconds', function() {
+  it('foodLevel decreases by 1 every 60 seconds and feeding refills', function() {
     tamagotchi.setHunger();
     jasmine.clock().tick(60001);
     expect(tamagotchi.foodLevel).toEqual(9);
-  });
-
-  it('feeding increases foodLevel by 1 until full', function() {
-    tamagotchi.setHunger();
-    jasmine.clock().tick(60001);
-    tamagotchi.feed();
-    expect(tamagotchi.foodLevel).toEqual(10);
     tamagotchi.feed();
     expect(tamagotchi.foodLevel).toEqual(10);
   });
@@ -59,6 +52,13 @@ describe('tamagotchi', function() {
     expect(tamagotchi.foodLevel).toEqual(0);
     jasmine.clock().tick(1500001);
     expect(tamagotchi.foodLevel).toEqual(0);
+  });
+
+  it('returns message when level drops to zero', function() {
+    tamagotchi.setHunger();
+    jasmine.clock().tick(600001);
+    expect(tamagotchi.foodLevel).toEqual(0);
+    expect(tamagotchi.setHunger()).toEqual('Your pet starved to death.');
   });
 
 });
